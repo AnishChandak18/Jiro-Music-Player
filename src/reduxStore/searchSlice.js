@@ -3,18 +3,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const searchQueryChanged = createAsyncThunk(
    'search/searchQueryChanged',
    async (query) => {
-      console.log(query.token, "token")
-      const url = `https://api.spotify.com/v1/search`;
+      const url = `https://api.spotify.com/v1/search?type=artist&q=${query.data}`;
 
       const response = await fetch(url, {
          method: 'GET',
          headers: {
             'Content-Type': "application/json",
-            'Authorization': `Bearer ${query.access_token}`
-         },
-         params: {
-            q: query.data,
-            type: "artist"
+            'Authorization': `Bearer ${query.token}`
          }
       });
 
@@ -23,24 +18,19 @@ export const searchQueryChanged = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data.results;
+      return data;
    }
 );
 
 export const searchArtist = createAsyncThunk(
    'search/searchArtist',
    async (query) => {
-      console.log(query);
-      const url = `https://api.spotify.com/v1/artists/${query.artistID}/top-tracks`;
+      const url = `https://api.spotify.com/v1/artists/${query.data}/top-tracks?limit=10&market=US`;
 
       const response = await fetch(url, {
          method: 'GET',
          headers: {
-            Authorization: `Bearer ${query.access_token}`
-         },
-         params: {
-            limit: 10,
-            market: 'US'
+            Authorization: `Bearer ${query.token}`
          }
       });
 
@@ -49,7 +39,7 @@ export const searchArtist = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data.results;
+      return data;
    }
 );
 

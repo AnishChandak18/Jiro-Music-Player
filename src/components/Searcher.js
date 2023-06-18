@@ -19,27 +19,23 @@ function Searcher(props) {
       const delayDebounceFn = setTimeout(() => {
          if (searchQuery) {
             setLoading(true);
-            console.log(props.token, "token")
             dispatch(searchQueryChanged({ data: searchQuery, token: props.token }));
-            const artistID = searchResults?.artists?.items[0]?.id;
-            console.log({
-               searchResults: searchResults,
-               artists: searchResults?.artists,
-               items: searchResults?.artists?.items,
-            })
-            if (artistID) {
-               dispatch(searchArtist({ data: artistID, token: props.token }))
-            }
          }
       }, 300);
-
       return () => clearTimeout(delayDebounceFn);
    }, [searchQuery, dispatch]);
    useEffect(() => {
-      if (artistDetails.length > 0) {
-         setTracks(artistDetails.searchResults.tracks);
+      if (searchResults?.artists?.items.length > 0) {
+         const artistID = searchResults?.artists?.items[0]?.id;
+         setLoading(false);
+         dispatch(searchArtist({ data: artistID, token: props.token }))
       }
-   }, [artistDetails])
+   }, [searchResults, dispatch])
+   useEffect(() => {
+      if (artistDetails.tracks.length > 0) {
+         setTracks(artistDetails.tracks);
+      }
+   }, [artistDetails]);
 
    return (
       <>
@@ -58,7 +54,7 @@ function Searcher(props) {
             (
                <ul>
                   {tracks.map((track) => (
-                     <li key={track.id}>{track.title}</li>
+                     <li key={track.id}>{track.name}</li>
                   ))}
                </ul>
             )}

@@ -31,7 +31,7 @@ function App() {
   }
 
   return (
-    <Provider store={store}>\
+    <Provider store={store}>
       <div className="app">
         <header className="app-header">
           <div className="searchContainer">
