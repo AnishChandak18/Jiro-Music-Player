@@ -32,7 +32,7 @@ function Searcher(props) {
       }
    }, [searchResults, dispatch])
    useEffect(() => {
-      if (artistDetails.tracks.length > 0) {
+      if (artistDetails) {
          setTracks(artistDetails.tracks);
       }
    }, [artistDetails]);
@@ -48,16 +48,27 @@ function Searcher(props) {
                onChange={handleInputChange}
             />
          </div>
-         {loading ? (
+         {loading && (
             <p>Loading...</p>
-         ) :
-            (
-               <ul>
+         )}
+         {tracks.length > 0 && (
+            <>
+               <h2>{searchResults?.artists?.items[0]?.name}</h2>
+               <div>
                   {tracks.map((track) => (
-                     <li key={track.id}>{track.name}</li>
+                     <div key={track.id} className='track-list'>
+                        <img
+                           src={track.album.images[2].url}
+                           alt="new"
+                           width={track.album.images[2].width}
+                           height={track.album.images[2].height}
+                        />
+                        <span>{track.name}</span>
+                     </div>
                   ))}
-               </ul>
-            )}
+               </div>
+            </>
+         )}
       </>
    )
 }

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import './App.css';
+import '../App.css';
 
-function App() {
+function MusicPLayer() {
 
    const [currentMusicDetails, setCurrentMusicDetails] = useState({
       songName: 'Chasing',
@@ -174,4 +174,4 @@ function App() {
    );
 }
 
-export default App;
+export default MusicPLayer;

@@ -50,7 +50,7 @@ const searchSlice = createSlice({
       searchResults: [],
       status: 'idle',
       error: null,
-      artistDetails: [],
+      artistDetails: null,
    },
    reducers: {
       setSearchQuery: (state, action) => {

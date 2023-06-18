@@ -9,10 +9,9 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background-color: #8EC1D6;
+    background-color: #282c34;
 }
 
 .container {
@@ -138,25 +137,19 @@ body {
 
 .app-header {
     background-color: #282c34;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
-
-
-
 }
 
 .searchContainer {
     margin: 20px auto;
     width: 500px;
-    height: 600px;
+    height: auto;
     background-color: #3CB35A;
     border-radius: 10px;
-
-
 }
 
 .searchContainer .SearchForm {
@@ -202,9 +195,6 @@ body {
     background-color: #d64e64;
     padding: 5px 5px;
     font-size: 20px;
-
-
-
 }
 
 .searchContainer a {
@@ -222,4 +212,12 @@ body {
 
 .searchContainer button:hover {
     background-color: #6EA4B9;
+}
+
+.track-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 10%;
 }
